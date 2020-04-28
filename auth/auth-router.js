@@ -2,13 +2,13 @@ const bcrypt = require("bcrypt");
 
 const router = require("express").Router();
 
-const Users = require("./users-model.js");
+const Users = require("../users/users-model.js");
 
 router.post("/register", (req, res) => {
   const user = req.body;
   const hash = bcrypt.hashSync(user.password, 8);
 
-  user.password = hash;
+  user.password = hash;//Essential***
 
   Users.add(user)
     .then((item) => {
@@ -20,7 +20,7 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-  const { username, password } = req.body;
+  const { username, password} = req.body;
 
   Users.findBy({ username })
     .then(([user]) => {

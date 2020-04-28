@@ -4,7 +4,7 @@ const Users = require("./users-model.js");
 
 router.get("/", restricted, (req, res) => {
     //added restricted middleware
-    //if(req.session && req.session.user){//Not needed due to restricted-middlewar
+    //if(req.session && req.session.user){//Not needed due to restricted-middleware
     Users.find()
         .then((users) => {
             res.json(users);
